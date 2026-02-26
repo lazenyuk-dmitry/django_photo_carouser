@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Тестовое задание - Слайдер</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css"
+    />
+
+    <style>
+      .slider-main img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        cursor: pointer;
+      }
+      .slider-nav img {
+        height: 100px;
+        object-fit: cover;
+        padding: 5px;
+        opacity: 0.5;
+        transition: 0.3s;
+      }
+      .slider-nav .slick-current img {
+        opacity: 1;
+        border: 2px solid #0d6efd;
+      }
+    </style>
+  </head>
+  <body class="bg-light">
+    <div class="container py-5">
+      <div class="row justify-content-center">
+        <div class="col-md-10">
+          <div class="slider-for shadow mb-3">
+            {% for item in slides %}
+            <div class="item">
+              <a
+                href="{{ item.image.url }}"
+                data-fancybox="gallery"
+                data-caption="{{ item.title }}"
+              >
+                <img src="{{ item.image.url }}" alt="{{ item.title }}" />
+              </a>
+            </div>
+            {% endfor %}
+          </div>
+
+          <div class="slider-nav">
+            {% for item in slides %}
+            <div class="item">
+              <img src="{{ item.image.url }}" alt="{{ item.title }}" />
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+
+    <script>
+      $(document).ready(function () {
+        // Инициализация основного слайдера
+        $(".slider-for").slick({
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          arrows: true,
+          fade: true,
+          asNavFor: ".slider-nav",
+        });
+
+        // Инициализация навигации
+        $(".slider-nav").slick({
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          asNavFor: ".slider-for",
+          dots: false,
+          centerMode: true,
+          focusOnSelect: true,
+          arrows: false,
+        });
+
+        // Инициализация Fancybox для полноэкранного режима
+        Fancybox.bind("[data-fancybox='gallery']", {});
+      });
+    </script>
+  </body>
+</html>
