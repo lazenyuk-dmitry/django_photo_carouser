@@ -6,9 +6,23 @@
       <div class="col-auto">
         <div class="row g-0 align-items-center">
           <div class="col-auto d-md-none">
-            <button class="header__mobile-menu-toggle btn btn-sm" type="button">
-              {% include 'includes/_icon.html' with name='mobile-menu-icon' class='header__mobile-menu-toggle-icon' %}
-            </button>
+            <div class="dropdown">
+              <button
+                class="header__mobile-menu-toggle btn btn-sm"
+                type="button"
+                id="DropdownMenu"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {% include 'includes/_icon.html' with name='mobile-menu-icon' class='header__mobile-menu-toggle-icon' %}
+              </button>
+
+              <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="DropdownMenu">
+                <li><a class="dropdown-item" href="#">Преимущества</a></li>
+                <li><a class="dropdown-item" href="#">Фотографии</a></li>
+              </ul>
+            </div>
           </div>
           <div class="col">
             <a href="/">
