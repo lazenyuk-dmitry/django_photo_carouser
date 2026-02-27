@@ -2,19 +2,23 @@
 
 {% addtoblock "css" %}
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1/dist/fancybox/fancybox.css"
+/>
 {% endaddtoblock %}
 
 <div class="slider">
   <div class="slider__main-container">
     <div class="slider__main shadow">
       {% for slide in slides %}
-      <div>
-        <div
-          class="ratio ratio-4x3"
-        >
-          <img class="rounded" src="{{ slide.image.url }}" alt="{{ slide.title }}" />
-        </div>
-      </div>
+      <a
+        class="ratio ratio-4x3"
+        href="{{ slide.image.url }}"
+        data-fancybox="gallery"
+      >
+        <img class="rounded" src="{% thumbnail slide.image 945x529 crop %}" width=945 height=529 alt="{{ slide.title }}" />
+      </a>
       {% endfor %}
     </div>
   </div>
@@ -43,6 +47,7 @@
 {% addtoblock "js" %}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@6.1/dist/fancybox/fancybox.umd.js"></script>
 
 <script>
   $(document).ready(function () {
@@ -82,6 +87,15 @@
         }
       ]
     });
+  });
+
+
+  Fancybox.bind('[data-fancybox="gallery"]', {
+    on: {
+        "Carousel.change": (fancyboxRef, carouselRef) => {
+        $(".slider__nav").slick('slickGoTo', fancyboxRef.getSlide().index);
+      }
+    },
   });
 </script>
 {% endaddtoblock %}
