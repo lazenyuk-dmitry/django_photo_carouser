@@ -195,10 +195,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'ru'
 
 LANGUAGES = [
     ("en", _("English")),
+    ("ru", _("Russian")),
     # Add additional languages here
 ]
 

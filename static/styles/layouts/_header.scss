@@ -1,7 +1,16 @@
-.header__nav {
-  .nav-link {
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    color: var(--white);
+.header {
+  &__nav {
+    .nav-link {
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--white);
+    }
+  }
+
+  &__mobile-menu-toggle {}
+
+  &__mobile-menu-toggle-icon {
+    height: 15px;
+    width: 20px;
   }
 }
