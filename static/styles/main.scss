@@ -1,74 +1,10 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+@import "abstract/config";
 
-:root {
-  --red: #ff342b;
-  --blue: #0b3d91;
-  --black: #0d0f12;
-  --dark: #17191d;
-  --gray: #1f242c;
-  --ligth-garay: #c3cddd;
-  --white: #fff;
+@import "base/base";
+@import "base/typography";
 
-  // Bootstrap variables
-  --bs-font-sans-serif: "Montserrat", sans-serif;
-  --bs-blue: var(--blue);
-  --bs-indigo: #6610f2;
-  --bs-purple: #6f42c1;
-  --bs-pink: #d63384;
-  --bs-red: var(--red);
-  --bs-orange: #fd7e14;
-  --bs-yellow: #ffc107;
-  --bs-green: #198754;
-  --bs-teal: #20c997;
-  --bs-cyan: #0dcaf0;
-  --bs-white: var(--white);
-  --bs-gray: var(--gray);
-  --bs-gray-dark: #343a40;
-  --bs-primary: var(--blue);
-  --bs-secondary: var(--gray);
-  --bs-success: #198754;
-  --bs-info: #0dcaf0;
-  --bs-warning: #ffc107;
-  --bs-danger: #dc3545;
-  --bs-light: var(--ligth-garay);
-  --bs-dark: var(--dark);
-}
+@import "components/icon";
+@import "components/advantage-item";
 
-body {
-  color: var(--white);
-  background: var(--gray);
-  font-size: 16px;
-}
-
-.header__nav {
-  .navbar {
-    margin: 0;
-    padding-left: 0;
-  }
-
-  .nav-item {
-    list-style: none;
-  }
-
-  .nav-link {
-    font-weight: 600;
-    letter-spacing: 0.05em;
-    color: var(--white);
-  }
-}
-
-.about-section {
-  background: var(--black);
-  padding: 5.625rem 0;
-}
-
-h1 {
-  font-weight: 700;
-  font-size: 3.5rem;
-  letter-spacing: 0.02em;
-}
-
-.icon {
-  height: 4rem;
-  width: 4rem;
-}
+@import "layouts/header";
+@import "layouts/about-section";

@@ -1,0 +1,42 @@
+{% load static %}
+
+<section class="about-section">
+  <div class="container">
+    <h1 class="text-center">Космическое агентство</h1>
+    <p class="about-section__text text-center text-light lh-lg fs-6 mt-2 mx-auto">
+      Национальное управление по аэронавтике и исследованию космического
+      пространства — ведомство, относящееся к федеральному правительству США и
+      подчиняющееся непосредственно президенту США.
+    </p>
+
+    <div class="about-section_advantages row align-items-center">
+      <div class="col">
+        <img
+          class="rounded img-fluid w-100"
+          src="{% static 'images/space-earth.jpg' %}"
+          width="555"
+          height="457"
+          alt="Earth"
+        />
+      </div>
+      <div class="col">
+        <div class="row">
+          <div class="col">
+            {% include 'includes/_advantage-item.html' with icon='shuttle' text='Спейс шаттлы —пилотируемые корабли' %}
+          </div>
+          <div class="col">
+            {% include 'includes/_advantage-item.html' with icon='telescope' text='Лучшее телескопическое оборудование' %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            {% include 'includes/_advantage-item.html' with icon='moon-stars' text='Исследовательские станции на Луне — шаг к новым открытиям!' %}
+          </div>
+          <div class="col">
+            {% include 'includes/_advantage-item.html' with icon='medal' text='Золотая медаль по научным исследованиям' %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
