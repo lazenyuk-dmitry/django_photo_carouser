@@ -9,8 +9,15 @@
 
   &__main-container,
   &__nav-container {
-    padding: 0 5.5rem;
     position: relative;
+  }
+
+  &__main-container {
+    padding: 0 5.5rem;
+  }
+
+  &__nav-container {
+    padding: 0 3.625rem;
   }
 
   &__nav-btn {
