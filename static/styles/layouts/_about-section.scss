@@ -1,11 +1,21 @@
 .about-section {
   background: var(--black);
 
-  &__text {
+  &___text {
     max-width: 750px;
   }
 
-  &_advantages {
+  &__advantages {
     margin-top: 5.625rem;
+
+    @media (max-width: $br-md) {
+      margin-top: 2rem;
+    }
+  }
+
+  &__advantages-img {
+    @media (max-width: $br-lg) {
+      max-width: 550px;
+    }
   }
 }

@@ -9,17 +9,17 @@
       подчиняющееся непосредственно президенту США.
     </p>
 
-    <div class="about-section_advantages row align-items-center">
-      <div class="col">
+    <div class="about-section__advantages row align-items-center">
+      <div class="col-12 col-lg-6 order-2 text-center">
         <img
-          class="rounded img-fluid w-100"
+          class="about-section__advantages-img rounded img-fluid w-100 mt-5 mt-lg-0"
           src="{% static 'images/space-earth.jpg' %}"
           width="555"
           height="457"
           alt="Earth"
         />
       </div>
-      <div class="col">
+      <div class="col order-1 order-lg-3">
         <div class="row">
           <div class="col">
             {% include 'includes/_advantage-item.html' with icon='shuttle' text='Спейс шаттлы —пилотируемые корабли' %}

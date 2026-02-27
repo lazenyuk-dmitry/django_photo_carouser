@@ -2,6 +2,10 @@ body {
   color: var(--white);
   background: var(--gray);
   font-size: 16px;
+
+  @media (max-width: $br-xl) {
+    font-size: 14px;
+  }
 }
 
 .navbar {
@@ -15,6 +19,10 @@ body {
 
 .section {
   padding: 5.625rem 0;
+
+  @media (max-width: $br-md) {
+    padding: 3rem 0;
+  }
 }
 
 .slick-track {

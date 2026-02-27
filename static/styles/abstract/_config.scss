@@ -31,3 +31,11 @@
   --bs-light: var(--light-gray);
   --bs-dark: var(--dark);
 }
+
+// Breakpoints
+$br-xs: 0;
+$br-sm: 576px;
+$br-md: 768px;
+$br-lg: 992px;
+$br-xl: 1200px;
+$br-xxl: 1400px;
