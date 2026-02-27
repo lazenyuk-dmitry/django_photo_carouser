@@ -1,0 +1,9 @@
+{% load static %}
+
+{% comment %}
+  Компонент для вывода SVG-иконки из спрайта.
+  Принимает переменную 'name' (id иконки без префикса #).
+{% endcomment %}
+<svg class="icon {{ class }}">
+  <use xlink:href="{% static 'icons/sprite.svg' %}#{{ name }}"></use>
+</svg>

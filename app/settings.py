@@ -92,10 +92,20 @@ INSTALLED_APPS = [
 
     # Plugins
     'adminsortable2',
+    'sass_processor',
 
     # Custom apps
     'slider',
 ]
+
+
+SASS_PRECISION = 8
+SASS_PROCESSOR_ROOT = os.path.join(BASE_DIR, 'static')
+SASS_PROCESSOR_INCLUDE_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+SASS_PROCESSOR_CUSTOM_FUNCTIONS = {}
+LIBSASS_SOURCE_COMMENTS = env('DEBUG')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -118,7 +128,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, "app", "templates"),
+            os.path.join(BASE_DIR, "templates"),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -249,8 +259,16 @@ DJANGOCMS_VERSIONING_ALLOW_DELETING_VERSIONS = True
 # Add project-wide static files directory
 # https://docs.djangoproject.com/en/6.0/ref/settings/#staticfiles-dirs
 
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
 STATICFILES_DIRS = [
-    BASE_DIR / "app" / "static",
+    BASE_DIR / "static",
+]
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'sass_processor.finders.CssFinder',
 ]
 
 INTERNAL_IPS = [
