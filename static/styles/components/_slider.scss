@@ -1,0 +1,47 @@
+.slider {
+  &__main {
+    .slick-slide {
+      img {
+        object-fit: cover;
+      }
+    }
+  }
+
+  &__main-container,
+  &__nav-container {
+    padding: 0 5.5rem;
+    position: relative;
+  }
+
+  &__nav-btn {
+    border-radius: 50% !important;
+    padding: 0.75rem !important;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1;
+
+    &:first-child {
+      left: 0;
+    }
+
+    &:last-child {
+      right: 0;
+    }
+  }
+
+  &__nav-btn-icon {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+
+  &__nav-item {
+    margin: 1.875rem;
+
+    &.slick-current {
+      img {
+        border: 2px solid var(--white);
+      }
+    }
+  }
+}

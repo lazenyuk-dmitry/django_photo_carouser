@@ -1,0 +1,73 @@
+{% load sekizai_tags thumbnail %}
+
+{% addtoblock "css" %}
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+{% endaddtoblock %}
+
+<div class="slider">
+  <div class="slider__main-container">
+    <div class="slider__main shadow">
+      {% for slide in slides %}
+      <div>
+        <div
+          class="ratio ratio-4x3"
+        >
+          <img class="rounded" src="{{ slide.image.url }}" alt="{{ slide.title }}" />
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+
+  <div class="slider__nav-container">
+    <button class="slider__nav-btn slider__nav-btn--prev btn btn-danger" type="button">
+      {% include 'includes/_icon.html' with name='arrow-left' class='slider__nav-btn-icon' %}
+    </button>
+
+
+    <div class="slider__nav">
+      {% for slide in slides %}
+      <div class="slider__nav-item ratio ratio-1x1">
+        <img class="rounded" src="{% thumbnail slide.image 165x165 crop %}" width="165" height="165" alt="{{ slide.title }}" />
+      </div>
+      {% endfor %}
+    </div>
+
+    <button class="slider__nav-btn slider__nav-btn--next btn btn-danger" type="button">
+      {% include 'includes/_icon.html' with name='arrow-right' class='slider__nav-btn-icon' %}
+    </button>
+  </div>
+</div>
+
+{% addtoblock "js" %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    // Основной слайдер
+    $(".slider__main").slick({
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      arrows: false,
+      fade: true,
+      dots: false,
+      asNavFor: ".slider__nav",
+    });
+
+    // Навигация
+    $(".slider__nav").slick({
+      slidesToShow: 5,
+      slidesToScroll: 1,
+      asNavFor: ".slider__main",
+      prevArrow: ".slider__nav-btn--prev",
+      nextArrow: ".slider__nav-btn--next",
+      dots: false,
+      centerMode: true,
+      focusOnSelect: true,
+      centerPadding: "0",
+    });
+  });
+</script>
+{% endaddtoblock %}

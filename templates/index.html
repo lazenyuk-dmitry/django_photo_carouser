@@ -1,3 +1,5 @@
+{% load static sass_tags sekizai_tags %}
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -15,13 +17,17 @@
 
     <title>Hello, world!</title>
 
-    {% load sass_tags %} {% load static %}
     <link rel="stylesheet" href="{% sass_src 'styles/main.scss' %}" />
+
+    {% block extra_css %}{% endblock %}
+    {% render_block "css" %}
   </head>
   <body>
     {% include 'includes/_header.html' %}
-    <!--  -->
+
     {% include 'includes/_about-section.html' %}
+
+    {% include 'includes/_gallery-section.html' %}
 
     <!-- Bootstrap JS -->
     <script
@@ -29,5 +35,8 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+
+    {% block extra_js %}{% endblock %}
+    {% render_block "js" %}
   </body>
 </html>
