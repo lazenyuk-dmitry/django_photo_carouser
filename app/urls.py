@@ -27,8 +27,6 @@ urlpatterns = i18n_patterns(
     path('filer/', include('filer.urls')),
 
     path('', include('slider.urls')),
-
-    # path('', include('cms.urls')),
 )
 
 
