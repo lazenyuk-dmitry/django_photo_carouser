@@ -12,7 +12,7 @@ class SliderItem(models.Model):
         on_delete=models.CASCADE,
         related_name="slider_items"
     )
-    # Поле для сортировки (обязательно для django-admin-sortable2)
+
     my_order = models.PositiveIntegerField(
         default=0,
         blank=False,
@@ -23,7 +23,6 @@ class SliderItem(models.Model):
     class Meta:
         verbose_name = "Элемент слайдера"
         verbose_name_plural = "Элементы слайдера"
-        # Сортировка по умолчанию, чтобы drag-and-drop работал корректно
         ordering = ['my_order']
 
     def __str__(self):
