@@ -129,8 +129,17 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
+### Сборка статики
+
+```bash
+RUN python manage.py compilescss
+RUN python manage.py collectstatic --noinput
+```
+
 ### 6. Запуск сервера
 
 ```bash
 python manage.py runserver
+# For production
+gunicorn app.wsgi:application --bind 0.0.0.0:8000 --workers 3
 ```

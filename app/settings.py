@@ -45,6 +45,7 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = env('ALLOWED_HOSTS')
 
+HEALTH_CHECK_TOKEN = env("HEALTH_CHECK_TOKEN")
 
 # Application definition
 
@@ -65,10 +66,17 @@ INSTALLED_APPS = [
     'parler',
     'filer',
     'easy_thumbnails',
+    'storages',
+
+    # Health check
+    'health_check',
+    # 'health_check.db',
+    # 'health_check.storage',
+    # 'health_check.contrib.migrations',
 
     # Custom apps
     'slider',
-    'storages',
+    'health',
 ]
 
 
