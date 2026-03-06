@@ -28,6 +28,8 @@ env = environ.Env(
     ALLOWED_HOSTS=(list, []),
     DB_HOST=(str, '127.0.0.1'),
     DB_PORT=(int, 3306),
+    USE_S3=(bool, False),
+    AWS_S3_REGION_NAME=(str, 'us-east-1')
 )
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
@@ -66,6 +68,7 @@ INSTALLED_APPS = [
 
     # Custom apps
     'slider',
+    'storages',
 ]
 
 
@@ -79,6 +82,7 @@ LIBSASS_SOURCE_COMMENTS = env('DEBUG')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -216,6 +220,46 @@ INTERNAL_IPS = [
 
 # Add project-wide static files directory
 # https://docs.djangoproject.com/en/6.0/ref/settings/#media-root
+USE_S3 = env("USE_S3")
+if USE_S3:
+    AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID")
+    AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
+    AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
+    AWS_S3_ENDPOINT_URL = env("AWS_S3_ENDPOINT_URL")
+    AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME")
 
-MEDIA_URL = "media/"
-MEDIA_ROOT = str(BASE_DIR.parent / "media")
+    # Настройки совместимости с Supabase
+    AWS_DEFAULT_ACL = None
+    AWS_S3_VERIFY = True
+    AWS_S3_ADDRESSING_STYLE = "path"
+    AWS_QUERYSTRING_AUTH = False
+
+    AWS_S3_CUSTOM_DOMAIN = (
+        AWS_S3_ENDPOINT_URL
+        .replace("https://", "")
+        .replace("/s3", f"/object/public/{AWS_STORAGE_BUCKET_NAME}")
+    )
+
+    STORAGES = {
+        "default": {
+            "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+        },
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        },
+    }
+
+    THUMBNAIL_DEFAULT_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
+else:
+    MEDIA_URL = '/media/'
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    # Для локальной разработки оставляем стандарт
+    STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage",
+        },
+    }
