@@ -3,7 +3,7 @@ version: "3.8"
 services:
   db:
     image: mysql:8.0
-    container_name: django_mysql_db
+    container_name: mysql_db
     restart: unless-stopped
     environment:
       MYSQL_DATABASE: "django_db"
@@ -15,5 +15,20 @@ services:
     volumes:
       - db_data:/var/lib/mysql
 
+  web:
+    build: .
+    container_name: web_app
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - .:/home/appuser/app
+      - static_volume:/home/appuser/app/staticfiles
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
 volumes:
   db_data:
+  static_volume:

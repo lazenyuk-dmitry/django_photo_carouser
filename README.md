@@ -132,8 +132,8 @@ python manage.py createsuperuser
 ### Сборка статики
 
 ```bash
-RUN python manage.py compilescss
-RUN python manage.py collectstatic --noinput
+python manage.py compilescss
+python manage.py collectstatic --ignore=*.scss --noinput
 ```
 
 ### 6. Запуск сервера

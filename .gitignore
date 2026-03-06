@@ -28,3 +28,5 @@ Thumbs.db
 
 # Django-filer & Easy-thumbnails
 thumbnails/
+
+/static/styles/main.css
