@@ -18,4 +18,7 @@ python manage.py compilescss
 python manage.py collectstatic --noinput --ignore=*.scss
 
 echo "Starting Gunicorn..."
-exec gunicorn app.wsgi:application --bind 0.0.0.0:8000 --workers ${GUNICORN_WORKERS:-2}
+exec gunicorn app.wsgi:application \
+    --bind 0.0.0.0:8000 \
+    --worker-tmp-dir /dev/shm \
+    --workers ${GUNICORN_WORKERS:-2}

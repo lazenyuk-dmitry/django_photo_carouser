@@ -4,6 +4,8 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
     PATH="/home/appuser/.local/bin:${PATH}"
 
+ENV APP_HOME=/home/appuser/app
+
 RUN apt-get update && apt-get install -y \
     gcc \
     default-libmysqlclient-dev \
@@ -12,16 +14,18 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 RUN useradd -m appuser
-RUN mkdir -p /home/appuser/app/staticfiles && chown appuser:appuser /home/appuser/app/staticfiles
 
-WORKDIR /home/appuser/app
+WORKDIR $APP_HOME
+RUN chown -R appuser:appuser $APP_HOME
+
+RUN mkdir -p staticfiles && chown appuser:appuser staticfiles
 
 COPY --chown=appuser:appuser req.pip .
 RUN pip install --no-cache-dir -r req.pip
 
 COPY --chown=appuser:appuser . .
-RUN chmod +x /home/appuser/app/entrypoint.sh
+RUN chmod +x entrypoint.sh
 
 USER appuser
 
-ENTRYPOINT ["/home/appuser/app/entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
