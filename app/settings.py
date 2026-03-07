@@ -134,7 +134,7 @@ WSGI_APPLICATION = 'app.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
-
+DB_SSL_CA = env("SSL_CA")
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -143,13 +143,11 @@ DATABASES = {
         'PASSWORD': env('DB_PASSWORD'),
         'HOST': env('DB_HOST'),
         'PORT': env('DB_PORT'),
-        'OPTIONS': {
-            'ssl': {
-                'ca': '/etc/ssl/certs/ca-certificates.crt',
-            }
-        },
+        'OPTIONS': {},
     }
 }
+if DB_SSL_CA:
+    DATABASES['default']['OPTIONS']['ssl'] = {'ca': DB_SSL_CA} # /etc/ssl/certs/ca-certificates.crt
 
 
 # Password validation
