@@ -6,10 +6,10 @@ services:
     container_name: mysql_db
     restart: unless-stopped
     environment:
-      MYSQL_DATABASE: "django_db"
-      MYSQL_USER: "admin"
-      MYSQL_PASSWORD: "admin"
-      MYSQL_ROOT_PASSWORD: "admin"
+      MYSQL_DATABASE: "${DB_NAME}"
+      MYSQL_USER: "${DB_USER}"
+      MYSQL_PASSWORD: "${DB_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "{DB_PASSWORD}"
     ports:
       - "3306:3306"
     volumes:

@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 RUN useradd -m appuser
-RUN mkdir -p /app/staticfiles && chown appuser:appuser /app/staticfiles
+RUN mkdir -p /home/appuser/app/staticfiles && chown appuser:appuser /home/appuser/app/staticfiles
 
 WORKDIR /home/appuser/app
 
