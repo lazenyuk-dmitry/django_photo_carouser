@@ -141,7 +141,7 @@ django_photo_carouser/
 ### 1. Клонируйте репозиторий
 
 ```bash
-git clone https://github.com/your-username/django_photo_carousel.git
+git clone https://github.com/lazenyuk-dmitry/django_photo_carousel.git
 cd django_photo_carousel
 ```
 
